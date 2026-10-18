@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="폰 화면에 보이는 영어, 일본어, 중국어를 한국어로 바꿔 보여줘요. 글자 인식은 폰 안에서 하고, 온라인 번역을 켜면 인식된 글자만 보내요(화면 이미지는 보내지 않아요)."
+            android:textSize="15sp" />
+
+        <TextView
+            style="@style/SectionTitle"
+            android:text="원문 언어" />
+
+        <RadioGroup
+            android:id="@+id/sourceGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/sourceAuto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="자동 감지" />
+
+            <RadioButton
+                android:id="@+id/sourceEnglish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="영어" />
+
+            <RadioButton
+                android:id="@+id/sourceJapanese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일본어" />
+
+            <RadioButton
+                android:id="@+id/sourceChinese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="중국어" />
+        </RadioGroup>
+
+        <TextView
+            style="@style/SectionTitle"
+            android:text="1단계. 다른 앱 위에 표시 권한" />
+
+        <TextView
+            android:id="@+id/overlayStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/overlayButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="권한 설정 열기" />
+
+        <TextView
+            style="@style/SectionTitle"
+            android:text="2단계. 기기 안 번역 모델 받기 (최초 1회, 인터넷 없을 때 사용)" />
+
+        <TextView
+            android:id="@+id/modelStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/downloadButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="번역 모델 다운로드 (약 90MB)" />
+
+        <TextView
+            style="@style/SectionTitle"
+            android:text="온라인 번역 (선택)" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="키를 넣으면 Gemini로 먼저 번역하고, 무료 한도를 다 쓰거나 막히면 Cloud Translation, Cloud 무료분(월 50만 자)도 다 쓰거나 인터넷이 없으면 기기 안 번역을 써요. 비워 두면 기기 안 번역만 써요."
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/geminiKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Gemini API 키 (AI Studio)"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/geminiModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Gemini 모델 (기본 gemini-3.8-flash)"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/cloudKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cloud Translation API 키"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/cloudUsage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/saveKeysButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="온라인 번역 설정 저장" />
+
+        <TextView
+            style="@style/SectionTitle"
+            android:text="3단계. 번역 시작" />
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="번역 시작" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="시작하면 화면에 떠 있는 '번역' 버튼이 생겨요.\n• 버튼을 누르면 지금 화면을 번역해서 위에 겹쳐 보여줘요.\n• 번역 결과를 아무 데나 누르면 닫혀요.\n• 버튼은 끌어서 옮길 수 있어요.\n• 버튼을 길게 누르거나 알림에서 '중지'를 누르면 끝나요."
+            android:textSize="14sp" />
+    </LinearLayout>
+</ScrollView>

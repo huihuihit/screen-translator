@@ -1,0 +1,46 @@
+name: Build APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build debug APK
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - name: Rename APK
+        run: cp app/build/outputs/apk/debug/app-debug.apk screen-translator.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: screen-translator-apk
+          path: screen-translator.apk
+
+      # 폰에서 바로 받을 수 있게 'latest' 릴리스에 최신 APK를 올린다.
+      - name: Publish to latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete latest --yes --cleanup-tag || true
+          gh release create latest screen-translator.apk \
+            --title "최신 빌드" \
+            --notes "커밋 ${GITHUB_SHA::7} 에서 자동으로 만든 APK예요." \
+            --prerelease
